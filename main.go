@@ -1,11 +1,25 @@
+// @title API de Pokémons
+// @version 1.0
+// @description Esta API serve para listar Pokémons
+// @termsOfService http://swagger.io/terms/
+
+// @license.name MIT
+// @license.url https://opensource.org/licenses/MIT
+
+// @host localhost:80
+// @BasePath /
 package main
 
 import (
-    "encoding/json"
+    "github.com/swaggo/files"
+    "github.com/swaggo/gin-swagger"
+	"encoding/json"
 	"net/http"
 	"github.com/gin-gonic/gin"
 	"io/ioutil"
 	"log"
+
+	_ "github.com/LmarDark/pokemon-api-golang/docs" 
 )
 
 type Pokemon struct {
@@ -29,6 +43,14 @@ func loadPokemonsFromFile(filename string) error {
     return nil
 }
 
+// @Summary Lista todos os pokémons
+// @Produce json
+// @Success 200 {object} map[string]Pokemon
+// @Router /pokemons [get]
+func getPokemons(c *gin.Context) {
+	c.JSON(http.StatusOK, db)
+}
+
 func setupRouter() *gin.Engine {
 	err := loadPokemonsFromFile("pokemons.json")
 	if err != nil {
@@ -37,14 +59,15 @@ func setupRouter() *gin.Engine {
 
 	r := gin.Default()
 	
-	r.GET("/pokemons", func(c *gin.Context) { 
-		c.JSON(http.StatusOK, db)
-	})
+	r.GET("/pokemons", getPokemons)
+
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	return r
 }
 
 func main() {
 	r := setupRouter()
-	r.Run(":8080")
+
+	r.Run(":80")
 }
