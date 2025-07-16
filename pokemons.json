@@ -1,0 +1,15 @@
+{
+	"Bulbasaur": {
+    	"image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+    	"number": "001"
+  	},
+  	"Charmander": {
+    	"image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
+    	"number": "004"
+  	},
+  	"Squirtle": {
+    	"image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png",
+    	"number": "007"
+  	}
+}
+
