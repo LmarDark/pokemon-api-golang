@@ -59,6 +59,10 @@ func setupRouter() *gin.Engine {
 
 	r := gin.Default()
 	
+	r.GET("/", func(c *gin.Context) {
+    	c.Redirect(http.StatusMovedPermanently, "/swagger/index.html")
+	})
+
 	r.GET("/pokemons", getPokemons)
 
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
