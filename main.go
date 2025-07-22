@@ -6,7 +6,7 @@
 // @license.name MIT
 // @license.url https://opensource.org/licenses/MIT
 
-// @host localhost:80
+// @host https://pokemon-api-golang.onrender.com
 // @BasePath /
 package main
 
